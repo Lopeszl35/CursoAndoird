@@ -14,6 +14,8 @@ public class MainActivity extends AppCompatActivity {
     //Declarando novamente o objeto pessoa
     Pessoa outraPessoa;
 
+    String dadosPessoa;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,6 +35,15 @@ public class MainActivity extends AppCompatActivity {
         outraPessoa.setSobreNome("Andrade");
         outraPessoa.setCursoDesejado("ADS");
         outraPessoa.setTelefoneContato("18981218829");
+
+        dadosPessoa = "Primeiro nome: ";
+        dadosPessoa += pessoa.getPrimeiroNome();//o atributo 'get' pega o atributo relacionado ao dado
+        dadosPessoa += " Sobrenome: ";
+        dadosPessoa += pessoa.getSobreNome();
+        dadosPessoa += " Curso Desejado: ";
+        dadosPessoa += pessoa.getCursoDesejado();
+        dadosPessoa += " Telefone de Contato: ";
+        dadosPessoa += pessoa.getTelefoneContato();
 
         int parada = 0;
 
