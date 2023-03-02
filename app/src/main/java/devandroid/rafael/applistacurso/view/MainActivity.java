@@ -19,7 +19,6 @@ public class MainActivity extends AppCompatActivity {
     //Declarando novamente a classe Pessoa, e o objeto pessoa
     Pessoa outraPessoa;
 
-    String dadosPessoa;
 
     //Classe, Objeto
     EditText editPrimeiroNome;
@@ -35,15 +34,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        //Recebendo objeto pessoa com a classe Pessoa
         pessoa = new Pessoa();
-
-        //Atribuindo atributos ao objeto
-        //Conforme o seu modelo, feito na classe Pessoa
-        //pessoa.setPrimeiroNome("Rafael");
-        //pessoa.setSobreNome("Amaro Lopes");
-        //pessoa.setCursoDesejado("Android");
-        //pessoa.setTelefoneContato("18-991729160");
-
         outraPessoa = new Pessoa();
         outraPessoa.setPrimeiroNome("Lucimara");
         outraPessoa.setSobreNome("Andrade");
@@ -95,17 +87,6 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(MainActivity.this, "Salvo" + pessoa.toString(), Toast.LENGTH_LONG).show();
             }
         });
-
-        /*
-        dadosPessoa = "Primeiro nome: ";
-        dadosPessoa += pessoa.getPrimeiroNome();//o atributo 'get' pega o atributo relacionado ao dado
-        dadosPessoa += " Sobrenome: ";
-        dadosPessoa += pessoa.getSobreNome();
-        dadosPessoa += " Curso Desejado: ";
-        dadosPessoa += pessoa.getCursoDesejado();
-        dadosPessoa += " Telefone de Contato: ";
-        dadosPessoa += pessoa.getTelefoneContato();
-         */
 
         Log.i("POOAndroid", pessoa.toString());
         Log.i("POOAndroid", outraPessoa.toString());
