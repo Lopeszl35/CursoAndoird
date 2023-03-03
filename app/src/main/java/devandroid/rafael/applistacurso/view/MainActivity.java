@@ -19,6 +19,7 @@ public class MainActivity extends AppCompatActivity {
     //Criando arquivo SharedPreferences
     //Classe SharedPreferences objeto preferences
     SharedPreferences preferences;
+    SharedPreferences.Editor listaVip;
     //psfs             =criando atributo para salvar o nome da lista
     public static final String NOME_PREFERENCES = "pref_listavip";
 
@@ -44,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
         //Instanciando SharedPreferences, passando o nome, passando o '0' para leitura e escrita
         preferences = getSharedPreferences(NOME_PREFERENCES, 0);
         //Criando lista para receber os dados
-        SharedPreferences.Editor listaVip = preferences.edit();
+        listaVip = preferences.edit();
 
         //Conectando a Classe MainActivity a PessoaController
         controller = new PessoaController();
@@ -80,6 +81,10 @@ public class MainActivity extends AppCompatActivity {
                 editSobreNome.setText("");
                 editTelefoneContato.setText("");
                 editNomeCurso.setText("");
+
+                //Limpando a listaVip
+                listaVip.clear();
+                listaVip.apply();
             }
         });
 

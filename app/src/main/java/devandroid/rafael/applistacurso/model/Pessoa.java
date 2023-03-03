@@ -6,7 +6,7 @@ public class Pessoa {
     //Atributos relacionados com os objetos
     //Metodos de acessp - Gets and Sets = Pegar e Setar
 
-    //Criando os dados da classe Pessoa
+    //Criando os objetos da classe Pessoa
     private String primeiroNome;
     private String sobreNome;
     private String cursoDesejado;
