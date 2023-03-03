@@ -10,15 +10,17 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import devandroid.rafael.applistacurso.R;
+import devandroid.rafael.applistacurso.controller.PessoaController;
 import devandroid.rafael.applistacurso.model.Pessoa;
 
 public class MainActivity extends AppCompatActivity {
+
+    PessoaController controller;
 
     //Declarando a classe Pessoa, e o objeto pessoa
     Pessoa pessoa;
     //Declarando novamente a classe Pessoa, e o objeto pessoa
     Pessoa outraPessoa;
-
 
     //Classe, Objeto
     EditText editPrimeiroNome;
@@ -33,6 +35,13 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        //Conectando a Classe MainActivity a PessoaController
+        controller = new PessoaController();
+        controller.toString();
+
+        //Conectando o objeto pessoa a classe Pessoa
+        pessoa = new Pessoa();
 
         //Recebendo objeto pessoa com a classe Pessoa
         pessoa = new Pessoa();
@@ -85,6 +94,9 @@ public class MainActivity extends AppCompatActivity {
                 pessoa.setCursoDesejado(editNomeCurso.getText().toString());
 
                 Toast.makeText(MainActivity.this, "Salvo" + pessoa.toString(), Toast.LENGTH_LONG).show();
+
+                //Controladora recebe o metodo salvar, com os atributos da clase pessoa
+                controller.salvar(pessoa);
             }
         });
 
