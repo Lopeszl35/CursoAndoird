@@ -17,5 +17,6 @@ public class PessoaController {
     //Metodo que a controladora usara para salvar os atributos dados pelo objeto pessoa
     public void salvar(Pessoa pessoa) {
         Log.i("MVC_Controller", "Salvo:" + pessoa.toString());
+
     }
 }
