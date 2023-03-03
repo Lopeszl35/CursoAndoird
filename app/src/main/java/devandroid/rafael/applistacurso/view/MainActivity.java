@@ -16,14 +16,7 @@ import devandroid.rafael.applistacurso.model.Pessoa;
 
 public class MainActivity extends AppCompatActivity {
 
-    //Criando arquivo SharedPreferences
-    //Classe SharedPreferences objeto preferences
-    SharedPreferences preferences;
-    SharedPreferences.Editor listaVip;
-    //psfs             =criando atributo para salvar o nome da lista
-    public static final String NOME_PREFERENCES = "pref_listavip";
-
-    PessoaController controller;
+    PessoaController controller;//Definindo o objeto da classe PessoaController
 
     //Declarando a classe Pessoa, e o objeto pessoa
     Pessoa pessoa;
@@ -42,22 +35,13 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //Instanciando SharedPreferences, passando o nome, passando o '0' para leitura e escrita
-        preferences = getSharedPreferences(NOME_PREFERENCES, 0);
-        //Criando lista para receber os dados
-        listaVip = preferences.edit();
-
         //Conectando a Classe MainActivity a PessoaController
-        controller = new PessoaController();
+        controller = new PessoaController(MainActivity.this);
         controller.toString();
 
         //Recebendo objeto pessoa com a classe Pessoa
         pessoa = new Pessoa();
-        //Mostrando dados na tela
-        pessoa.setPrimeiroNome(preferences.getString("primeiroNome",""));
-        pessoa.setSobreNome(preferences.getString("sobreNome", ""));
-        pessoa.setCursoDesejado(preferences.getString("nomeCurso", ""));
-        pessoa.setTelefoneContato(preferences.getString("telefoneContato", ""));
+        controller.buscar(pessoa);
 
         editPrimeiroNome = findViewById(R.id.editPrimeiroNome);
         editSobreNome = findViewById(R.id.editSobreNome);
@@ -82,9 +66,7 @@ public class MainActivity extends AppCompatActivity {
                 editTelefoneContato.setText("");
                 editNomeCurso.setText("");
 
-                //Limpando a listaVip
-                listaVip.clear();
-                listaVip.apply();
+                controller.limpar();
             }
         });
 
@@ -106,13 +88,6 @@ public class MainActivity extends AppCompatActivity {
                 pessoa.setCursoDesejado(editNomeCurso.getText().toString());
 
                 Toast.makeText(MainActivity.this, "Salvo" + pessoa.toString(), Toast.LENGTH_LONG).show();
-
-                //Pegando os dados e adicionando a lista
-                listaVip.putString("primeiroNome", pessoa.getPrimeiroNome());
-                listaVip.putString("sobreNome", pessoa.getSobreNome());
-                listaVip.putString("nomeCurso", pessoa.getCursoDesejado());
-                listaVip.putString("telefoneContato", pessoa.getTelefoneContato());
-                listaVip.apply();//Salvando a lista
 
                 //Controladora recebe o metodo salvar, com os atributos da clase pessoa
                 controller.salvar(pessoa);
