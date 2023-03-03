@@ -26,8 +26,6 @@ public class MainActivity extends AppCompatActivity {
 
     //Declarando a classe Pessoa, e o objeto pessoa
     Pessoa pessoa;
-    //Declarando novamente a classe Pessoa, e o objeto pessoa
-    Pessoa outraPessoa;
 
     //Classe, Objeto
     EditText editPrimeiroNome;
@@ -52,30 +50,27 @@ public class MainActivity extends AppCompatActivity {
         controller = new PessoaController();
         controller.toString();
 
-        //Conectando o objeto pessoa a classe Pessoa
-        pessoa = new Pessoa();
-
         //Recebendo objeto pessoa com a classe Pessoa
         pessoa = new Pessoa();
-        outraPessoa = new Pessoa();
-        outraPessoa.setPrimeiroNome("Lucimara");
-        outraPessoa.setSobreNome("Andrade");
-        outraPessoa.setCursoDesejado("ADS");
-        outraPessoa.setTelefoneContato("18981218829");
+        //Mostrando dados na tela
+        pessoa.setPrimeiroNome(preferences.getString("primeiroNome",""));
+        pessoa.setSobreNome(preferences.getString("sobreNome", ""));
+        pessoa.setCursoDesejado(preferences.getString("nomeCurso", ""));
+        pessoa.setTelefoneContato(preferences.getString("telefoneContato", ""));
 
         editPrimeiroNome = findViewById(R.id.editPrimeiroNome);
         editSobreNome = findViewById(R.id.editSobreNome);
         editTelefoneContato = findViewById(R.id.editTelefoneContato);
         editNomeCurso = findViewById(R.id.editNomeCurso);
 
+        editPrimeiroNome.setText(pessoa.getPrimeiroNome());
+        editSobreNome.setText(pessoa.getSobreNome());
+        editNomeCurso.setText(pessoa.getCursoDesejado());
+        editTelefoneContato.setText(pessoa.getTelefoneContato());
+
         btnlimpar = findViewById(R.id.btnlimpar);
         btnfinalizar = findViewById(R.id.btnfinalizar);
         btnsalvar = findViewById(R.id.btnsalvar);
-
-        editPrimeiroNome.setText(pessoa.getPrimeiroNome());
-        editSobreNome.setText(pessoa.getSobreNome());
-        editTelefoneContato.setText(pessoa.getTelefoneContato());
-        editNomeCurso.setText(pessoa.getCursoDesejado());
 
         //Criando ações para os botões
         btnlimpar.setOnClickListener(new View.OnClickListener() {
@@ -120,7 +115,6 @@ public class MainActivity extends AppCompatActivity {
         });
 
         Log.i("POOAndroid", pessoa.toString());
-        Log.i("POOAndroid", outraPessoa.toString());
 
     }
 }
