@@ -2,6 +2,7 @@ package devandroid.rafael.applistacurso.view;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -14,6 +15,12 @@ import devandroid.rafael.applistacurso.controller.PessoaController;
 import devandroid.rafael.applistacurso.model.Pessoa;
 
 public class MainActivity extends AppCompatActivity {
+
+    //Criando arquivo SharedPreferences
+    //Classe SharedPreferences objeto preferences
+    SharedPreferences preferences;
+    //psfs             =criando atributo para salvar o nome da lista
+    public static final String NOME_PREFERENCES = "pref_listavip";
 
     PessoaController controller;
 
@@ -35,6 +42,11 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        //Instanciando SharedPreferences, passando o nome, passando o '0' para leitura e escrita
+        preferences = getSharedPreferences(NOME_PREFERENCES, 0);
+        //Criando lista para receber os dados
+        SharedPreferences.Editor listaVip = preferences.edit();
 
         //Conectando a Classe MainActivity a PessoaController
         controller = new PessoaController();
@@ -94,6 +106,13 @@ public class MainActivity extends AppCompatActivity {
                 pessoa.setCursoDesejado(editNomeCurso.getText().toString());
 
                 Toast.makeText(MainActivity.this, "Salvo" + pessoa.toString(), Toast.LENGTH_LONG).show();
+
+                //Pegando os dados e adicionando a lista
+                listaVip.putString("primeiroNome", pessoa.getPrimeiroNome());
+                listaVip.putString("sobreNome", pessoa.getSobreNome());
+                listaVip.putString("nomeCurso", pessoa.getCursoDesejado());
+                listaVip.putString("telefoneContato", pessoa.getTelefoneContato());
+                listaVip.apply();//Salvando a lista
 
                 //Controladora recebe o metodo salvar, com os atributos da clase pessoa
                 controller.salvar(pessoa);
