@@ -43,6 +43,8 @@ public class MainActivity extends AppCompatActivity {
         //Conectando o objeto pessoa a classe Pessoa
         pessoa = new Pessoa();
 
+        //Recebendo objeto pessoa com a classe Pessoa
+        pessoa = new Pessoa();
         outraPessoa = new Pessoa();
         outraPessoa.setPrimeiroNome("Lucimara");
         outraPessoa.setSobreNome("Andrade");
