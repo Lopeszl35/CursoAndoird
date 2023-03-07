@@ -10,16 +10,22 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import java.util.List;
+
 import devandroid.rafael.applistacurso.R;
+import devandroid.rafael.applistacurso.controller.CursoController;
 import devandroid.rafael.applistacurso.controller.PessoaController;
+import devandroid.rafael.applistacurso.model.Curso;
 import devandroid.rafael.applistacurso.model.Pessoa;
 
 public class MainActivity extends AppCompatActivity {
 
     PessoaController controller;//Definindo o objeto da classe PessoaController
+    CursoController cursoController;
 
     //Declarando a classe Pessoa, e o objeto pessoa
     Pessoa pessoa;
+    List<Curso> listaDeCursos;
 
     //Classe, Objeto
     EditText editPrimeiroNome;
@@ -38,6 +44,9 @@ public class MainActivity extends AppCompatActivity {
         //Conectando a Classe MainActivity a PessoaController
         controller = new PessoaController(MainActivity.this);
         controller.toString();
+
+        cursoController = new CursoController();
+        listaDeCursos = cursoController.getListaDeCursos();
 
         //Recebendo objeto pessoa com a classe Pessoa
         pessoa = new Pessoa();
